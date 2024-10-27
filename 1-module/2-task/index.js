@@ -10,14 +10,11 @@ function print(text) {
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
-  if (name == null) return false; //проверка на нажатие кнопки "Отмена"
-  else {
-    let isValidSpaсe = name.trim().includes(' '); //проверка на наличие внутренних пробелов в строке при наличие внешних
-
-    if (isValidSpaсe || name.split() == '' || name.length < 4 || name == null)
-      return false; //проверка на пустую строку и минимальную длину строки
-    else return true;
-  }
+  if (name === null) return false; //проверка на нажатие кнопки "Отмена"
+  let isValidSpaсe = name.trim().includes(' '); //проверка на наличие внутренних пробелов в строке при наличие внешних
+  if (isValidSpaсe || name.split() == '' || name.length < 4)
+    return false; //проверка на пустую строку и минимальную длину строки
+  return true;
 }
 
 function sayHello() {
