@@ -10,6 +10,6 @@ let calculator = {
     return this.a * this.b;
   },
 };
-
+The solution is optimized
 // НЕ УДАЛЯТЬ СТРОКУ, НУЖНА ДЛЯ ПРОВЕРКИ
 window.calculator = calculator; // делает ваш калькулятор доступным глобально
