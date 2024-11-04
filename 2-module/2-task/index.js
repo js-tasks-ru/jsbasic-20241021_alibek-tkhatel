@@ -1,5 +1,5 @@
 function isEmpty(obj) {
-  let arrayProperties = [];
+    let arrayProperties = [];
   for (let key in obj) {
     arrayProperties.push(obj[key]);
   }
