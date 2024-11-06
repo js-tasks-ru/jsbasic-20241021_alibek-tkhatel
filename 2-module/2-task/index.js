@@ -1,3 +1,7 @@
 function isEmpty(obj) {
-  // ваш код...
+    let arrayProperties = [];
+  for (let key in obj) {
+    arrayProperties.push(obj[key]);
+  }
+  return arrayProperties.length == 0;
 }
