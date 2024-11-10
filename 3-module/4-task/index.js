@@ -1,7 +1,7 @@
 function showSalary(users, age) {
-  let string = users
+  return users
     .filter((item) => item.age <= age)
-    .map((item) => `${item.name}, ${item.balance}\n`)
-    .join('');
-    return string.slice(0, string.length-1)
+    .map((item) => `${item.name}, ${item.balance}`)
+    .join('\n');
+    // return string.slice(0, string.length-1)
 }
