@@ -1,6 +1,6 @@
 function makeDiagonalRed(table) {
   for (let i = 0; i < table.rows.length; i++) {
-    let row = table.rows[i];
-    row.cells[i].style.backgroundColor = 'red';
+    //проходимся циклом по коллекции строк
+    table.rows[i].cells[i].style.backgroundColor = 'red'; // в каждой i-той строке закрашиваем i-тую ячейку
   }
 }
