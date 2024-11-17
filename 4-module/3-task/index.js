@@ -10,7 +10,7 @@ function highlight(table) {
       table.rows[i].classList.add('available');
     if (statusAvailable.dataset.available == 'false')
       table.rows[i].classList.add('unavailable');
-    if (!statusAvailable.dataset.available)
+    if (!statusAvailable.matches('[data-available]'))
       table.rows[i].setAttribute('hidden', true);
     statusGender.textContent == 'm'
       ? table.rows[i].classList.add('male')
