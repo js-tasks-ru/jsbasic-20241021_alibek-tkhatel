@@ -22,14 +22,14 @@ export default class UserTable {
 
   #template() {
     return `
-    <table>
+    <table> <thead><tr><th>Имя</th><th>Возраст</th><th>Зарплата</th><th>Город</th><th></th></tr></thead><tbody>
     ${this.rows
       .map(
         (item) =>
           `<tr class= 'table-row'><td>${item.name}</td><td>${item.age}</td><td>${item.salary}</td><td>${item.city}</td><td><button data-remove = true>X</button></td></tr>`,
       )
       .join('\n')}
-    </table>`;
+    </tbody></table>`;
   }
 
   #onRowRemove = () => {
@@ -50,7 +50,6 @@ export default class UserTable {
         return;
       }
       row.remove();
-      console.log(target);
     });
   }
 }
