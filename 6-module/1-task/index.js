@@ -12,6 +12,8 @@
  *      }
  *
  */
+
+import createElement from '../../assets/lib/create-element.js';
 export default class UserTable {
   elem = null;
   rows = [];
@@ -32,30 +34,27 @@ export default class UserTable {
     </tbody></table>`;
   }
 
-  #onRowRemove = () => {
-    const event = new CustomEvent('remove-row', {
-      bubbles: true,
-    });
-  };
-
   #render() {
     this.elem = createElement(this.#template());
 
-    this.elem.addEventListener('click', ({ target }) => {
-      if (target.dataset.remove !== 'true') {
+    this.elem.addEventListener('click', (event) => {
+      if (event.target.dataset.remove !== 'true') {
         return;
       }
-      const row = target.closest('.table-row');
+      const row = event.target.closest('.table-row');
       if (!row) {
         return;
       }
       row.remove();
+      if (this.elem.lastElementChild.children.length == 0) {
+        this.elem.remove()
+      }
     });
   }
 }
 
-function createElement(html) {
+/* function createElement(html) {
   const temp = document.createElement('div');
   temp.innerHTML = html;
   return temp.firstElementChild;
-}
+} */
