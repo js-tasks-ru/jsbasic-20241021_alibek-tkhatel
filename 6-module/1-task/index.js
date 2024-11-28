@@ -1,18 +1,3 @@
-/**
- * Компонент, который реализует таблицу
- * с возможностью удаления строк
- *
- * Пример одного элемента, описывающего строку таблицы
- *
- *      {
- *          name: 'Ilia',
- *          age: 25,
- *          salary: '1000',
- *          city: 'Petrozavodsk'
- *      }
- *
- */
-
 import createElement from '../../assets/lib/create-element.js';
 export default class UserTable {
   elem = null;
@@ -47,14 +32,8 @@ export default class UserTable {
       }
       row.remove();
       if (this.elem.lastElementChild.children.length == 0) {
-        this.elem.remove()
+        this.elem.remove();
       }
     });
   }
 }
-
-/* function createElement(html) {
-  const temp = document.createElement('div');
-  temp.innerHTML = html;
-  return temp.firstElementChild;
-} */
