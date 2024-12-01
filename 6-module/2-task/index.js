@@ -8,11 +8,11 @@ export default class ProductCard {
     this.category = category;
     this.image = image;
     this.id = id;
-    this.render(); //запускаем функцию отрисовки
+    this.#render(); //запускаем функцию отрисовки
   }
 
   //функция создания шаблона верстки
-  template() {
+  #template() {
     return `
     <div class = 'card'>
       <div class = 'card__top'>
@@ -30,7 +30,7 @@ export default class ProductCard {
     </div>
     `;
   }
-  onProductAdd = () => {
+  #onProductAdd = () => {
     //создаем пользовательское событие
     const event = new CustomEvent('product-add', {
       detail: this.id, //передаем в detail идентификатор объекта
@@ -39,8 +39,8 @@ export default class ProductCard {
     this.elem.dispatchEvent(event); //вешаем событие на элемент
   };
 
-  render() {
-    this.elem = createElement(this.template()); //прогоняем через функцию создания DOM элемента результат создания шаблона
-    this.elem.addEventListener('click', this.onProductAdd); //подписываемся на событие клика по карточке
+  #render() {
+    this.elem = createElement(this.#template()); //прогоняем через функцию создания DOM элемента результат создания шаблона
+    this.elem.addEventListener('click', this.#onProductAdd); //подписываемся на событие клика по карточке
   }
 }
