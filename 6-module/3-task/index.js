@@ -2,9 +2,11 @@ import createElement from '../../assets/lib/create-element.js';
 
 export default class Carousel {
   elem = null;
-  slides = [];
+  #slides = [];
+  #counterSlide = 0;
   constructor(slides) {
-    this.slides = slides || this.slides;
+    this.#slides = slides || this.#slides;
+    this.#counterSlide = this.#counterSlide;
     this.#render();
   }
 
@@ -18,7 +20,7 @@ export default class Carousel {
       <img src="/assets/images/icons/angle-left-icon.svg" alt="icon">
     </div>
     <div class="carousel__inner">
-    ${this.slides
+    ${this.#slides
       .map(
         (item) => `
       <div class="carousel__slide" data-id="${item.id}">
@@ -39,38 +41,33 @@ export default class Carousel {
   }
 
   #onSlideToggle = ({ target }) => {
-    let carousel = document.querySelector('.carousel__inner');
-    let carouselArrowLeft = document.querySelector('.carousel__arrow_left');
-    let carouselArrowRight = document.querySelector('.carousel__arrow_right');
+    let carousel = this.elem.querySelector('.carousel__inner');
+    let carouselArrowLeft = this.elem.querySelector('.carousel__arrow_left');
+    let carouselArrowRight = this.elem.querySelector('.carousel__arrow_right');
     if (target.closest('.carousel__arrow_right')) {
       carousel.style.transform = `translateX(-${
-        carousel.offsetWidth + carousel.offsetWidth * counterSlide
+        carousel.offsetWidth+carousel.offsetWidth * this.#counterSlide
       }px)`;
-      counterSlide++; //меняем счетчик
-      console.log(carousel.style.transform)
+      this.#counterSlide++; //меняем счетчик
 
-
-
-      counterSlide == this.slides.length - 1
+      this.#counterSlide == this.#slides.length - 1
         ? (carouselArrowRight.style.display = 'none')
         : (carouselArrowLeft.style.display = '');
     }
     if (target.closest('.carousel__arrow_left')) {
       carousel.style.transform = `translateX(${
-        carousel.offsetWidth - carousel.offsetWidth * counterSlide
+        carousel.offsetWidth-carousel.offsetWidth * this.#counterSlide
       }px)`;
-      counterSlide--;
-      console.log(carousel.style.transform)
+      this.#counterSlide--;
 
-
-      counterSlide == 0
+      this.#counterSlide == 0
         ? (carouselArrowLeft.style.display = 'none')
         : (carouselArrowRight.style.display = '');
     }
   };
 
   #onProductAdd = ({ target }) => {
-    if (target.closest('.carousel__caption')) {
+    if (target.closest('.carousel__button')) {
       //создаем пользовательское событие
       const event = new CustomEvent('product-add', {
         detail: target.closest('[data-id]').getAttribute('data-id'), //передаем в detail идентификатор объекта
@@ -87,8 +84,6 @@ export default class Carousel {
     this.elem.addEventListener('click', this.#onProductAdd);
   }
 }
-let counterSlide = 0;
-
 document.body.addEventListener('product-add', ({ detail }) => {
   console.log(detail);
 });
